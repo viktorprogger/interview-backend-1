@@ -5,7 +5,7 @@
 Реализация шаров:
 
 ```php
-final enum Color {
+enum Color {
     case RED;
     case BLUE;
 }
@@ -13,17 +13,17 @@ final enum Color {
 final class Ball {
     private static $instances = [];
 
-    private function __construct(public readonly Color $color, public readonly int $number) 
+    private function __construct(public readonly Color $color, public readonly int $number)
     {
     }
-    
+
     public static function instance(Color $color, int $number): self
     {
-        if (!isset(self::$instances[$color][$number])) {
-            self::$instances[$color][$number] = new self($color, $number);
+        if (!isset(self::$instances[$color->name][$number])) {
+            self::$instances[$color->name][$number] = new self($color, $number);
         }
-        
-        return self::$instances[$color][$number];
+
+        return self::$instances[$color->name][$number];
     }
 }
 ```
